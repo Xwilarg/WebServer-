@@ -3,6 +3,7 @@
 
 # include <cpprest/http_listener.h>
 # include <string>
+# include <array>
 
 namespace WebServer
 {
@@ -14,7 +15,9 @@ namespace WebServer
 
 	private:
 		void GetRequest(web::http::http_request message) const noexcept;
+		void PostRequest(web::http::http_request message) const noexcept;
 		web::http::experimental::listener::http_listener _listener;
+		std::wstring* _allcolors;
 	};
 }
 
