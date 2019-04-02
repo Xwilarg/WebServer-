@@ -16,6 +16,12 @@ namespace WebServer
 
 	void WebServer::GetRequest(web::http::http_request message) const noexcept
 	{
-		message.reply(web::http::status_codes::OK, web::json::value::string(U("OK")));
+		auto colors = web::json::value::array(100);
+		auto red = web::json::value::string(L"255000000");
+		for (int i = 0; i < 100; i++)
+		{
+			colors.at(i) = red;
+		}
+		message.reply(web::http::status_codes::OK, colors);
 	}
 }
