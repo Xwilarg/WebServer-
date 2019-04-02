@@ -22,6 +22,10 @@ namespace WebServer
 		{
 			colors.at(i) = red;
 		}
-		message.reply(web::http::status_codes::OK, colors);
+		web::http::http_response response;
+		response.set_status_code(web::http::status_codes::OK);
+		response.set_body(colors);
+		response.headers().add(L"Access-Control-Allow-Origin", "*");
+		message.reply(response);
 	}
 }
