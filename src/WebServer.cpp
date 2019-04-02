@@ -3,7 +3,7 @@
 namespace WebServer
 {
 	WebServer::WebServer(std::wstring &&ip, std::wstring &&port) noexcept
-		: _listener(L"http://" + ip + L":" + port), _allcolors(new std::wstring[100])
+		: _listener(L"http://" + std::move(ip) + L":" + std::move(port)), _allcolors()
 	{
 		auto red = std::wstring(L"255000000");
 		for (int i = 0; i < 100; i++)
@@ -17,7 +17,6 @@ namespace WebServer
 
 	WebServer::~WebServer() noexcept
 	{
-		delete[] _allcolors;
 		_listener.close().wait();
 	}
 
@@ -33,7 +32,7 @@ namespace WebServer
 		message.reply(response);
 	}
 
-	void WebServer::PostRequest(web::http::http_request message) const noexcept
+	void WebServer::PostRequest(web::http::http_request message) noexcept
 	{
 		auto body = message.extract_string().get();
 		std::wstring str(body.begin(), body.end());

@@ -15,9 +15,9 @@ namespace WebServer
 
 	private:
 		void GetRequest(web::http::http_request message) const noexcept;
-		void PostRequest(web::http::http_request message) const noexcept;
+		void PostRequest(web::http::http_request message) noexcept;
 		web::http::experimental::listener::http_listener _listener;
-		std::wstring* _allcolors;
+		std::array<std::wstring, 100> _allcolors;
 	};
 }
 
