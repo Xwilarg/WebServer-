@@ -7,10 +7,10 @@ namespace WebServer
 		_listenerUpdate(L"http://" + std::move(ip) + L":" + std::move(port) + L"/update"),
 		_allcolors()
 	{
-		auto red = std::wstring(L"255000000");
+		auto white = std::wstring(L"255255255");
 		for (int i = 0; i < 100; i++)
 		{
-			_allcolors[i] = red;
+			_allcolors[i] = white;
 		}
 		_listenerGet.support(web::http::methods::GET, std::bind(&WebServer::GetColors, this, std::placeholders::_1));
 		_listenerUpdate.support(web::http::methods::POST, std::bind(&WebServer::UpdateColors, this, std::placeholders::_1));
